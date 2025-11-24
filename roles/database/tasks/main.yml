@@ -1,0 +1,40 @@
+---
+- name: Install MySQL server
+  apt:
+    name: mysql-server
+    state: present
+    update_cache: yes
+  become: true
+
+- name: Ensure MySQL is running and enabled
+  service:
+    name: mysql
+    state: started
+    enabled: true
+  become: true
+
+- name: Allow MySQL to listen on all interfaces
+  lineinfile:
+    path: /etc/mysql/mysql.conf.d/mysqld.cnf
+    regexp: '^bind-address'
+    line: 'bind-address = 0.0.0.0'
+    backup: yes
+  notify: Restart MySQL
+  become: true
+
+- name: Open MySQL port in firewall
+  ufw:
+    rule: allow
+    port: 3306
+    proto: tcp
+  become: true
+
+- name: Create MySQL user for remote access from web server
+  mysql_user:
+    name: "{{ db_user }}"
+    password: "{{ db_password }}"
+    host: "{{ web_host }}"
+    priv: "{{ db_name }}.*:ALL"
+    state: present
+  become: true
+

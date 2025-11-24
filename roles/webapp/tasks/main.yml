@@ -1,0 +1,72 @@
+---
+# 1. Install Docker
+- name: Install Docker
+  become: true
+  apt:
+    name: docker.io
+    state: present
+    update_cache: yes
+
+# 2. Ensure Docker service is running
+- name: Ensure Docker service is running
+  become: true
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+# 3. Install Docker Python module
+- name: Install Docker Python module (system package)
+  become: true
+  apt:
+    name: python3-docker
+    state: present
+    update_cache: yes
+
+# 4. Copy application code to remote host
+- name: Copy application code to remote host
+  become: true
+  copy:
+    src: "{{ playbook_dir }}/../app/"
+    dest: "/tmp/app/"
+    mode: '0755'
+
+# 5. Copy Dockerfile to remote host
+- name: Copy Dockerfile to remote host
+  become: true
+  copy:
+    src: "{{ playbook_dir }}/../Dockerfile"
+    dest: "/tmp/app/Dockerfile"
+    mode: '0644'
+
+# 6. Render app configuration (.env file)
+- name: Render app configuration (.env file)
+  become: true
+  template:
+    src: config.j2
+    dest: /tmp/config.env
+    mode: '0600'
+
+# 7. Build Docker image
+- name: Build web app Docker image
+  become: true
+  docker_image:
+    name: "{{ docker_image }}"
+    tag: latest
+    source: build
+    build:
+      path: "/tmp/app"
+    state: present
+
+# 8. Run Docker container
+- name: Run web application container
+  become: true
+  docker_container:
+    name: "{{ docker_container }}"
+    image: "{{ docker_image }}:latest"
+    state: started
+    recreate: true
+    ports:
+      - "{{ app_port }}:{{ app_port }}"
+    env_file: /tmp/config.env
+

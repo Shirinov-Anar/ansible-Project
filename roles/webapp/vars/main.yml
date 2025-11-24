@@ -1,0 +1,13 @@
+---
+# Web application variables
+app_name: "{{ vault_app_name }}"
+app_port: "{{ vault_app_port }}"
+docker_image: "{{ vault_docker_image }}"
+docker_container: "{{ vault_docker_container }}"
+
+# DB variables from vault
+db_host: "{{ vault_db_host }}"
+db_name: "{{ vault_db_name }}"
+db_user: "{{ vault_db_user }}"
+db_password: "{{ vault_db_password }}"
+

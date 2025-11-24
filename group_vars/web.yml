@@ -1,0 +1,8 @@
+db_host: 192.168.1.73
+db_port: 3306
+db_name: myappdb
+db_user: myappuser
+db_password: "{{ vault_db_password }}"
+
+app_port: 5000
+
