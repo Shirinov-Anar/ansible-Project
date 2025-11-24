@@ -6,31 +6,8 @@ An automation repository built with **Ansible**, designed to deploy a MySQL data
 
 ## Project Structure
 
-.
-├── ansible.cfg # Ansible configuration file
-├── app/ # Flask web application code
-│ ├── app.py
-│ └── requirements.txt
-├── Dockerfile # Dockerfile to build Flask app image
-├── group_vars/ # Group-specific variables
-│ ├── db.yml
-│ └── web.yml
-├── hosts # Inventory file with DB and web hosts
-├── playbooks/ # Main playbooks
-│ ├── db.yml
-│ ├── site.yml
-│ └── web.yml
-├── roles/ # Ansible roles
-│ ├── database/
-│ │ ├── tasks/main.yml
-│ │ ├── handlers/main.yml
-│ │ ├── templates/my.cnf.j2
-│ │ └── vars/main.yml
-│ └── webapp/
-│ ├── tasks/main.yml
-│ ├── templates/config.j2
-│ └── vars/main.yml
-└── vault.yml # Encrypted secrets managed by Ansible Vault
+<img width="1300" height="531" alt="image" src="https://github.com/user-attachments/assets/74117e32-9fdb-498e-a2d2-1222eab2c1e6" />
+
 
 
 ---
@@ -91,3 +68,4 @@ vault_app_name: myapp
 vault_app_port: 5000
 vault_docker_image: myapp_image
 vault_docker_container: myapp_container
+
