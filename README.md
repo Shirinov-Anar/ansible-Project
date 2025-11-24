@@ -69,3 +69,11 @@ vault_app_port: 5000
 vault_docker_image: myapp_image
 vault_docker_container: myapp_container
 ```
+Encrypt it using Ansible Vault:
+```
+ansible-vault encrypt vault.yml
+
+#Use --ask-vault-pass or --vault-password-file when running playbooks
+```
+
+
