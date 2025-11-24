@@ -70,12 +70,12 @@ vault_docker_image: myapp_image
 vault_docker_container: myapp_container
 ```
 Encrypt it using Ansible Vault:
-```
+```ini
 ansible-vault encrypt vault.yml
 
 #Use --ask-vault-pass or --vault-password-file when running playbooks
-#Replace IPs with your actual server addresses
 ```
+
 
 
 
