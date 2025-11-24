@@ -76,6 +76,15 @@ ansible-vault encrypt vault.yml
 #Use --ask-vault-pass or --vault-password-file when running playbooks
 ```
 
+## Running the Playbooks
+Run the main playbook to deploy both DB and web application:
+```
+ansible-playbook -i hosts playbooks/site.yml --ask-vault-pass
+```
+This executes:
 
+db.yml on the DB host
+
+web.yml on the web host
 
 
