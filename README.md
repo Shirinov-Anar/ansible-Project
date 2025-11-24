@@ -54,8 +54,8 @@ Edit `hosts` file to include your target servers:
 [db]
 192.168.1.73
 #Replace IPs with your actual server addresses
-
-##Vault File
+```
+## Inventory Setup
 
 Create or edit vault.yml to store sensitive credentials:
 
@@ -68,4 +68,5 @@ vault_app_name: myapp
 vault_app_port: 5000
 vault_docker_image: myapp_image
 vault_docker_container: myapp_container
+
 
