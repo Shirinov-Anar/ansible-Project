@@ -74,6 +74,8 @@ Encrypt it using Ansible Vault:
 ansible-vault encrypt vault.yml
 
 #Use --ask-vault-pass or --vault-password-file when running playbooks
+#Replace IPs with your actual server addresses
 ```
+
 
 
